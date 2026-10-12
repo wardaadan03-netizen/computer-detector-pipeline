@@ -74,18 +74,31 @@ A **hybrid real-time computer vision pipeline** that combines classical OpenCV i
 
 ## Project Structure
 cv-detector-pipeline/
+
 ├── configs/ # YAML configuration files
+
 ├── src/ # Core pipeline modules
+
 ├── models/ # Pretrained weights (YOLOv8n)
+
 ├── data/ # Input videos + output artifacts
+
 ├── scripts/ # CLI entry points
+
 ├── tests/ # pytest unit tests
+
 ├── docs/ # Whitepaper, diagrams, changelog
+
 ├── main.py # Main entry point
+
 ├── requirements.txt
+
 ├── Dockerfile
+
 ├── .gitignore
+
 ├── LICENSE
+
 └── README.md
 
 
