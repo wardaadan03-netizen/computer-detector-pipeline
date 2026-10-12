@@ -28,47 +28,47 @@ A **hybrid real-time computer vision pipeline** that combines classical OpenCV i
 
 ## Features
 
-- ✅ **Real-time inference** on webcam, video files, or RTSP streams
-- ✅ **Dual-branch architecture**: classical CV + YOLOv8 deep learning
-- ✅ **Adaptive thresholding** with Gaussian preprocessing (illumination invariant)
-- ✅ **Contour extraction & filtering** by pixel bounds (min/max area)
-- ✅ **Dynamic overlay** of class count vectors and bounding boxes
-- ✅ **Frame-by-frame metrics**: latency, FPS, IoU, mean confidence
-- ✅ **CSV logging** + matplotlib performance plots
-- ✅ **Modular & testable** codebase (pytest)
-- ✅ **Docker-ready** for reproducible deployment
+-  **Real-time inference** on webcam, video files, or RTSP streams
+-  **Dual-branch architecture**: classical CV + YOLOv8 deep learning
+-  **Adaptive thresholding** with Gaussian preprocessing (illumination invariant)
+-  **Contour extraction & filtering** by pixel bounds (min/max area)
+-  **Dynamic overlay** of class count vectors and bounding boxes
+-  **Frame-by-frame metrics**: latency, FPS, IoU, mean confidence
+-  **CSV logging** + matplotlib performance plots
+-  **Modular & testable** codebase (pytest)
+-  **Docker-ready** for reproducible deployment
 
 ---
 
 ## Architecture
 ┌──────────────────────────────────────────────────────────────────────┐
-│ Input Frame │
+│ Input Frame                                                          │
 └──────────────────────────────┬───────────────────────────────────────┘
-│
-┌────────────────┴────────────────┐
-▼ ▼
-┌─────────────────────┐ ┌─────────────────────┐
-│ Classical Branch │ │ Deep Branch │
-│ Gaussian Blur │ │ YOLOv8n │
-│ Adaptive Threshold │ │ Inference │
-│ Morph Clean │ │ NMS │
-│ Contour Extract │ │ Class Assignment │
-└──────────┬──────────┘ └──────────┬──────────┘
-│ │
-└────────────┬───────────────────┘
-▼
-┌────────────────────────┐
-│ Overlay & Metrics │
-│ - Bounding Boxes │
-│ - Class Count Vectors │
-│ - FPS / Latency │
-└────────────┬───────────┘
-▼
-┌────────────────────────┐
-│ Output Frame + CSV │
-└────────────────────────┘
+                               │
+              ┌────────────────┴────────────────┐
+              ▼                                 ▼
+┌─────────────────────┐             ┌─────────────────────┐
+│ Classical Branch    │             │  Deep Branch        │
+│ Gaussian Blur       │             │ YOLOv8n             │
+│ Adaptive Threshold  │             │ Inference           │
+│ Morph Clean         │             │ NMS                 │
+│ Contour Extract     │             │ Class Assignment    │
+└──────────┬──────────┘             └──────────┬──────────┘
+           │                                   │
+            └────────────┬───────────────────┘
+                         ▼
+              ┌────────────────────────┐
+              │ Overlay & Metrics      │
+              │ - Bounding Boxes       │
+              │ - Class Count Vectors  │
+              │ - FPS / Latency        │
+              └────────────┬───────────┘
+                           ▼
+              ┌────────────────────────┐
+              │ Output Frame + CSV     │
+              └────────────────────────┘
 
-text
+
 
 ---
 
@@ -88,7 +88,6 @@ cv-detector-pipeline/
 ├── LICENSE
 └── README.md
 
-text
 
 See `docs/ARCHITECTURE.md` for a detailed module diagram.
 
