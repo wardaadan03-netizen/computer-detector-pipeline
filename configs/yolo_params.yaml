@@ -1,0 +1,14 @@
+model:
+  name: "yolov8n"
+  input_size: [640, 640]
+  half_precision: false
+
+inference:
+  batch_size: 1
+  warmup_frames: 10
+  max_detections: 100
+
+nms:
+  conf: 0.35
+  iou: 0.45
+  agnostic: false

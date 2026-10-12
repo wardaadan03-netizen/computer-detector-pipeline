@@ -1,0 +1,40 @@
+video:
+  source: 0                # 0 = webcam, or path to file
+  width: 1280
+  height: 720
+  fps: 30
+
+preprocess:
+  gaussian_kernel: 5
+  gaussian_sigma: 1.4
+  adaptive_method: "gaussian"   # or "mean"
+  block_size: 11
+  c_constant: 2
+  morph_kernel: 3
+
+detector:
+  model_path: "models/yolov8n.pt"
+  conf_threshold: 0.35
+  iou_threshold: 0.45
+  classes: null            # null = all classes
+  device: "cpu"            # or "cuda"
+
+segmenter:
+  min_area: 500
+  max_area: 200000
+  tracker: "kcf"           # or "csrt", "mosse"
+  max_lost_frames: 30
+
+overlay:
+  font_scale: 0.6
+  thickness: 2
+  box_color: [0, 255, 0]
+  text_color: [255, 255, 255]
+  show_fps: true
+  show_counts: true
+
+output:
+  save_video: true
+  output_path: "data/outputs/annotated.mp4"
+  log_metrics: true
+  metrics_path: "data/outputs/metrics.csv"
